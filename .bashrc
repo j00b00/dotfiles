@@ -28,4 +28,4 @@ export EDITOR="$VISUAL"
 set -o vi
 
 # Aliases
-
+alias mtr='sudo mtr'
