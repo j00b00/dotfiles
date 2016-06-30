@@ -9,11 +9,20 @@ PS1+="\[$(tput sgr0)$(tput setaf 1)\]\$(vcprompt -f '%b:%r%u%m')"	# vcprompt
 PS1+="\[$(tput bold)$(tput setaf 7)\]\n\\$ \[$(tput sgr0)\]"    	# $
 export PS1
 
+# bash completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+. $(brew --prefix)/etc/bash_completion
+fi
+
 # Set PATH
 PATH=/usr/local/bin:/usr/local/sbin:~/local/bin:$PATH
 export path
 
 # To set tmux/screen window name to hostname
+settitle() {
+    printf "\033k$1\033\\"
+}
+
 ssh() {
     settitle "$*"
     command ssh "$@"
