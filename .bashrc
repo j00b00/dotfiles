@@ -1,4 +1,6 @@
-# Custom prompt
+# Custom PS1
+if tty -s
+then
 PS1="\n\t\n"	                                	        	# Time
 PS1+="\[$(tput sgr0)$(tput setaf 5)\]\u"		        	# User
 PS1+="\[$(tput bold)$(tput setaf 7)\]at"		        	# at
@@ -8,6 +10,7 @@ PS1+="\[$(tput sgr0)$(tput setaf 2)\]\w "		        	# full working directory
 PS1+="\[$(tput sgr0)$(tput setaf 1)\]\$(vcprompt -f '%b:%r%u%m')"	# vcprompt
 PS1+="\[$(tput bold)$(tput setaf 7)\]\n\\$ \[$(tput sgr0)\]"    	# $
 export PS1
+fi
 
 # bash completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -18,7 +21,11 @@ fi
 PATH=/usr/local/bin:/usr/local/sbin:~/local/bin:$PATH
 export path
 
-# To set tmux/screen window name to hostname
+# Make vim the default editor
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+# Functions for tmux window naming
 settitle() {
     printf "\033k$1\033\\"
 }
@@ -29,12 +36,6 @@ ssh() {
     settitle `hostname`
 }
 
-#Make vim the default editor
-export VISUAL=vim
-export EDITOR="$VISUAL"
-
-# Set GNU readline to Vim mode
-set -o vi
-
 # Aliases
+alias ls='ls -G'
 alias mtr='sudo mtr'
