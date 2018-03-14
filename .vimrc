@@ -1,6 +1,11 @@
+if has('gui_running')
+ set guifont=Roboto\ Mono\ Light\ for\ Powerline:h18
+endif
+
 colorscheme molokai
 
 syntax enable                   " enable syntax processing
+filetype on
 set number                      " show line numbers
 set showcmd                     " show command in bottom bar
 set cursorline                  " highlight current line
@@ -21,35 +26,29 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-let mapleader=","               " leader is comma
-
-filetype on
 autocmd FileType python nnoremap <buffer> <leader>r :exec '!clear; python' shellescape(@%, 1)<cr>
 
-map <C-n> :NERDTreeToggle<CR>
+let mapleader=","               " leader is comma
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+let g:airline_powerline_fonts = 1
+let g:airline_theme='molokai'
+let g:rehash256 = 1
 
-set nocompatible                " be iMproved, required for Vundle
-filetype off                    " required for Vundle
+" Load vim-plug
+if empty(glob("~/.vim/autoload/plug.vim"))
+    execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'   " let Vundle manage Vundle, required
-Plugin 'scrooloose/nerdtree'
-Plugin 'itchyny/lightline.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-vinegar'
-Plugin 'tpope/vim-speeddating'
-Plugin 'ekalinin/dockerfile.vim'
-Plugin 'vim-lastplace'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'ntpeters/vim-better-whitespace'
-
-" All of your Plugins must be added before the following line
-call vundle#end()               " required
-filetype plugin indent on       " required
+call plug#begin()
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-vinegar'
+Plug 'dietsche/vim-lastplace'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'clockworknet/vim-junos-syntax'
+call plug#end()
