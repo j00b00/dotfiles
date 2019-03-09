@@ -30,8 +30,8 @@ In my PS1 I call vcprompt:
 https://github.com/djl/vcprompt
 
 ```
-$ curl -sL https://github.com/djl/vcprompt/raw/master/bin/vcprompt > /bin/vcprompt
-$ chmod 755 ~/bin/vcprompt
+$ sudo curl -sL https://github.com/djl/vcprompt/raw/master/bin/vcprompt > /bin/vcprompt
+$ sudo chmod 755 /bin/vcprompt
 ```
 
 Or, on MacOS, use Homebrew:
