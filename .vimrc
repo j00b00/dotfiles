@@ -1,54 +1,80 @@
-if has('gui_running')
- set guifont=Roboto\ Mono\ Light\ for\ Powerline:h18
-endif
-
-colorscheme molokai
-
-syntax enable                   " enable syntax processing
-filetype on
-set number                      " show line numbers
-set showcmd                     " show command in bottom bar
-set cursorline                  " highlight current line
-set wildmenu                    " visual autocomplete for command menu
-set lazyredraw                  " redraw only when we need to
-set showmatch                   " highlight matching [{()}]
-set incsearch                   " search as characters are entered
-set hlsearch                    " highlight matches
-set clipboard=unnamed           " to use tmux buffer
-set laststatus=2                " status line always on
-set backspace=2                 " make backspace work like most other apps
-set ignorecase                  " non case-sensitive search
-set smartcase                   " case-sensitive if search contains an uppercase character
-set ttyfast                     " Send more characters for redraws
-set mouse=a                     " Enable mouse use in all modes
-set ttymouse=xterm2
-set tabstop=4
-set shiftwidth=4
+set hidden
+set termguicolors
+set number
+set showcmd
+set cursorline
+set wildmenu
+set showmatch
+set hlsearch
+set clipboard=unnamed
+set ignorecase
+set smartcase
+set ttyfast
+set lazyredraw
+set mouse=a
+set tabstop=2
+set shiftwidth=2
 set expandtab
+set guioptions=
+set shortmess=I
+set omnifunc=syntaxcomplete#Complete
 
-autocmd FileType python nnoremap <buffer> <leader>r :exec '!clear; python' shellescape(@%, 1)<cr>
+let mapleader=","
 
-let mapleader=","               " leader is comma
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:airline_powerline_fonts = 1
-let g:airline_theme='molokai'
-let g:rehash256 = 1
-
-" Load vim-plug
 if empty(glob("~/.vim/autoload/plug.vim"))
-    execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+    execute '!curl --create-dirs -fLo  ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 endif
 
-call plug#begin()
+call plug#begin('~/.vim/plugged')
+Plug 'tomasr/molokai'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-vinegar'
+Plug 'ervandew/supertab'
 Plug 'dietsche/vim-lastplace'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'clockworknet/vim-junos-syntax'
+Plug 'sheerun/vim-polyglot'
+Plug 'reedes/vim-pencil'
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'w0rp/ale'
+Plug 'airblade/vim-gitgutter'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
+
+" vim-airline settings
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_theme='base16_spacemacs'
+
+" Ctrl P like bindings for FZF
+let g:fzf_action = {
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-v': 'vsplit'
+      \ }
+nnoremap <c-p> :FZF<cr>
+augroup fzf
+  autocmd!
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+augroup END
+
+" Use Tab to cycle between buffers
+:nnoremap <Tab> :bnext<CR>
+:nnoremap <S-Tab> :bprevious<CR>
+
+" Open new buffer
+:nnoremap <Leader>n :enew<CR>
+
+" Source .vimrc
+nmap <Leader>s :source ~/.vimrc<CR>
+
+colorscheme molokai
+
+hi EndOfBuffer guifg=bg

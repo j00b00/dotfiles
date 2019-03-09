@@ -44,3 +44,5 @@ alias console='screen /dev/tty.usbserial'
 # Make history file BIG
 HISTFILESIZE=10000000
 HISTSIZE=10000000
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
