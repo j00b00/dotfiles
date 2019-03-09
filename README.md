@@ -1,6 +1,8 @@
 # dotfiles
 These are my dotfiles. There are many like them, but these ones are mine.
 
+![screenshot](https://objects-us-east-1.dream.io/joseph/screenshots/dotfiles.screenshot.png "Screenshot")
+
 # Requirements
 
 I am using plugin managers for both vim and tmux.
