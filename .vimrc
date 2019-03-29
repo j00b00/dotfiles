@@ -31,6 +31,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'ervandew/supertab'
 Plug 'dietsche/vim-lastplace'
 Plug 'terryma/vim-multiple-cursors'
@@ -46,13 +50,26 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
+" vim-plug bindings
+nmap <Leader>p :PlugInstall<CR>
+
 " vim-airline settings
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_theme='base16_spacemacs'
 
-" Ctrl P like bindings for FZF
+" vim-tmuxline settings
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+      \'win'  : '#I #W',
+      \'cwin' : '#I #W #F',
+      \'x'    : '%a',
+      \'y'    : '%R',
+      \'z'    : '#H',
+      \'options' : {'status-justify' : 'left'}}
+
+"Ctrl P like bindings for FZF
 let g:fzf_action = {
       \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit'
@@ -71,6 +88,9 @@ augroup END
 
 " Open new buffer
 :nnoremap <Leader>n :enew<CR>
+
+" Close buffer
+:nnoremap <Leader>w :bdel<CR>
 
 " Source .vimrc
 nmap <Leader>s :source ~/.vimrc<CR>
