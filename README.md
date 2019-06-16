@@ -49,7 +49,7 @@ https://github.com/ryanoasis/nerd-fonts
 
 
 ```
-$ brew install font-hack-nerd-font
+$ brew cask install homebrew/cask-fonts/font-hack-nerd-font
 ```
 
 Happy Hacking!
