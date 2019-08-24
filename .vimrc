@@ -26,7 +26,7 @@ if empty(glob("~/.vim/autoload/plug.vim"))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'tomasr/molokai'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
@@ -40,9 +40,9 @@ Plug 'dietsche/vim-lastplace'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'clockworknet/vim-junos-syntax'
+Plug 'momota/cisco.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'reedes/vim-pencil'
-Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
@@ -95,6 +95,11 @@ augroup END
 " Source .vimrc
 nmap <Leader>s :source ~/.vimrc<CR>
 
-colorscheme molokai
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+
+set updatetime=100
+
+colorscheme dracula
 
 hi EndOfBuffer guifg=bg
