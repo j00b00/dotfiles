@@ -12,11 +12,6 @@ PS1+="\[$(tput bold)$(tput setaf 7)\]\n\\$ \[$(tput sgr0)\]"           # $
 export PS1
 fi
 
-# bash completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-. $(brew --prefix)/etc/bash_completion
-fi
-
 # Set PATH
 PATH=/usr/local/bin:/usr/local/sbin:~/local/bin:$PATH
 export path

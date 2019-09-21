@@ -18,6 +18,7 @@ set expandtab
 set guioptions=
 set shortmess=I
 set omnifunc=syntaxcomplete#Complete
+set encoding=UTF-8
 
 let mapleader=","
 
